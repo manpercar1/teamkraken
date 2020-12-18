@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<br/>
+	<h3>Informacion del ejercicio</h3>
+		<br/>
+		<table class="table table-striped">
+	        <tr>
+	            <th>Tipo</th>
+	            <td>{{ ejercicio.tipo }}</td>
+	        </tr>
+	        <tr>
+	            <th>Material</th>
+	            <td>{{ ejercicio.material }}</td>
+	        </tr>
+	        <tr>
+	            <th>Objetivo tecnico</th>
+	            <td>{{ ejercicio.objetivoTecnico }}</td>
+	        </tr>
+	        <tr>
+	            <th>Objetivo tactico</th>
+	            <td>{{ ejercicio.objetivoTactico }}</td>
+	        </tr>
+	        <tr>
+	            <th>Descripcion</th>
+	            <td>{{ ejercicio.descripcion }}</td>
+	        </tr>
+	        <tr>
+	            <th>Representacion</th>
+	        </tr>
+	    </table>
+	    <img src="{{MEDIA_URL}}{{ ejercicio.representacion }}"/>
+	    	
+{% endblock %}

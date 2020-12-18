@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	
+	<br/>
+	<h3>Ejercicios</h3>
+	<br/>
+	<form id="formulario" method="post" action=''>{% csrf_token %}
+		{{formulario}}
+		<input type='submit' value='Realizar Busqueda'/>
+		{% if request.POST %}
+		<a href='/ejercicios' class="btn btn-link">Borrar filtro</a>
+	{% endif %}
+    </form>
+    
+    <hr>
+
+	<div class="mb-5">
+	
+	{% if resultado %}
+	
+		<h4> Total de ejercicios relacionados:  {{ resultado|length }}</h4>
+		
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+		            <th scope="col">Tipo</th>
+      				<th scope="col">Objetivo tecnico</th>
+      				<th scope="col">Objetivo tactico</th>
+      				<th></th>
+		        </tr>
+			</thead>
+			<tbody>
+				{% for row in resultado %}
+				    <tr>
+						<td>{{ row.tipo }}</td>
+						<td>{{ row.objetivoTecnico }}</td>
+						<td>{{ row.objetivoTactico }}</td>
+						<td>
+							<a href='/ejercicios/ejercicio/{{ row.id }}'>Detalles</a>
+						</td>
+	    			</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	
+	{% else %}
+	
+		{% if resultado|length == 0 and request.POST %}
+	
+			<h4> No se han encontrado coincidencias, asi que te mostramos todos los ejercicios </h4>
+		
+		{% endif %}
+	
+		<table class="table table-hover" id="carsTable">
+  			<thead class="thead-dark">
+    			<tr>
+      				<th scope="col">Tipo</th>
+      				<th scope="col">Objetivo tecnico</th>
+      				<th scope="col">Objetivo tactico</th>
+      				<th></th>
+    			</tr>
+  			</thead>
+  			<tbody>
+  			
+  				{% for ejercicio in ejercicios %}
+    			<tr>
+					<td>{{ ejercicio.tipo }}</td>
+					<td>{{ ejercicio.objetivoTecnico }}</td>
+					<td>{{ ejercicio.objetivoTactico }}</td>
+					<td>
+						<a href='/ejercicios/ejercicio/{{ ejercicio.id }}'>Detalles</a>
+					</td>
+    			</tr>
+    			{% endfor %}
+     
+  			</tbody>
+  		</table>
+  		
+  	{% endif %}
+  	
+	</div>
+
+{% endblock %}

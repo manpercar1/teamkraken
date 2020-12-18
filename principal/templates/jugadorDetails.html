@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<br/>
+	<h3>Informacion del jugador</h3>
+		<br/>
+		<table class="table table-striped">
+	        <tr>
+	            <th>Nombre</th>
+	            <td>{{ jugador.nombre }}</td>
+	        </tr>
+	        <tr>
+	            <th>Apellidos</th>
+	            <td>{{ jugador.apellidos }}</td>
+	        </tr>
+	        <tr>
+	        	<th>Fecha de nacimiento</th>
+	        	<td>{{ jugador.fechaNacimiento }}</td>
+	        </tr>
+	        <tr>
+	            <th>Posicion principal</th>
+	            <td>{{ jugador.posicionPrincipal }}</td>
+	        </tr>
+	        <tr>
+	        	<th>Posiciones secundarias</th>
+	        	<td valign="top">
+	        		{% for posicion in jugador.posicionesSecundarias.all %}
+		            	{{ posicion.nombre }}
+	                {% endfor %}
+	            </td>
+	        </tr>
+	        <tr>
+	            <th>Altura</th>
+	            <td>{{ jugador.altura }}</td>
+	        </tr>
+	        <tr>
+	            <th>Pie dominante</th>
+	            <td>{{ jugador.pieDominante }}</td>
+	        </tr>
+	    </table>
+	    
+	    <a href='/jugadores/jugador/{{ jugador.id }}/editar' class="btn btn-primary">Editar jugador</a>
+	    
+	    <a href='/jugadores/jugador/{{ jugador.id }}/eliminar' class="btn btn-danger">Eliminar jugador</a>
+	    
+	    <br/>
+	    <br/>
+	    <br/>
+	    <h4>Test de Cooper</h4>
+	    
+	    <table class="table table-striped">
+	    	{% for testCooper in testCoopers %}
+                <tr>
+                	<th>Fecha</th>
+                    <td>{{ testCooper.fecha }}</td>
+                </tr>
+                <tr>
+                	<th>Distancia</th>
+                    <td>{{ testCooper.distancia }}</td>
+                </tr>
+                <tr>
+                	<th>VO-Maximo</th>
+                    <td>{{ testCooper.vo2max }}</td>
+                </tr>
+	    	{% endfor %}
+	    </table>
+	    
+	    <br/>
+	    <br/>
+	    <h4>Partidos convocado</h4>
+	    
+	    <table class="table table-striped">
+	    	{% for partido in partidos %}
+                <tr>
+                	<th>Partido</th>
+                    <td><a href='/partidos/partido/{{ partido.id }}/{{ jugador.id }}'>{{ partido.local }} - {{ partido.visitante }}</a></td>
+                </tr>
+                <tr>
+                	<th>Fecha</th>
+                    <td>{{ partido.fecha }}</td>
+                </tr>
+                <tr>
+                	<th>Titular</th>
+                    <td>{{ partido.titular }}</td>
+                </tr>
+                <tr>
+                	<th>Minutos jugados</th>
+                    <td>{{ partido.minutosJugados }}</td>
+                </tr>
+	    	{% endfor %}
+	    </table>
+	    
+	    <br/>
+	    <br/>
+	    <h4>Entrenamientos asistidos</h4>
+	    
+	    <table class="table table-striped">
+	    	{% for entrenamiento in entrenamientos %}
+                <tr>
+                	<th>Fecha</th>
+                    <td>{{ entrenamiento.fecha }}</td>
+                    <td><a href='/entrenamientos/entrenamiento/{{ entrenamiento.id }}'>Detalles</a></td>
+                </tr>
+	    	{% endfor %}
+	    </table>
+	    
+{% endblock %}
