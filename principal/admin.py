@@ -1,4 +1,5 @@
-from principal.models import Posicion,Ejercicio,Entrenamiento,Partido,Jugador,TestCooper,Falta
+from principal.models import Posicion,Ejercicio,Entrenamiento,Partido,Jugador,TestCooper,Falta,\
+    ObjetivoTactico, ObjetivoTecnico
 from django.contrib import admin
 
 # Register your models here.
@@ -9,3 +10,5 @@ admin.site.register(Partido)
 admin.site.register(Jugador)
 admin.site.register(TestCooper)
 admin.site.register(Falta)
+admin.site.register(ObjetivoTactico)
+admin.site.register(ObjetivoTecnico)

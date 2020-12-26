@@ -7,12 +7,24 @@ class Posicion(models.Model):
 
     def __str__(self):
         return self.nombre
-     
+    
+class ObjetivoTecnico(models.Model):
+    nombre = models.CharField(max_length=30, verbose_name='Objetivo tecnico')
+
+    def __str__(self):
+        return self.nombre
+    
+class ObjetivoTactico(models.Model):
+    nombre = models.CharField(max_length=30, verbose_name='Objetivo tactico')
+
+    def __str__(self):
+        return self.nombre
+    
 class Ejercicio(models.Model):
     tipo = models.CharField(max_length=50, verbose_name='Tipo')
     material = models.TextField(verbose_name='Material', help_text='Enumera el material necesario')
-    objetivoTecnico = models.CharField(max_length=50, verbose_name='Objetivo tecnico')
-    objetivoTactico = models.CharField(max_length=50, verbose_name='Objetivo tactico')
+    objetivoTecnico = models.ManyToManyField(ObjetivoTecnico)
+    objetivoTactico = models.ManyToManyField(ObjetivoTactico)
     descripcion = models.TextField(verbose_name='Descripcion', help_text='Añade una descripcion')
     representacion = models.ImageField(upload_to='ejercicios', verbose_name='Ejercicio')
     
