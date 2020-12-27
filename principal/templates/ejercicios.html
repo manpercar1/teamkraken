@@ -34,8 +34,16 @@
 				{% for row in resultado %}
 				    <tr>
 						<td>{{ row.tipo }}</td>
-						<td>{{ row.objetivoTecnico }}</td>
-						<td>{{ row.objetivoTactico }}</td>
+						<td>
+							{% for objT in row.objetivoTecnico.all %}
+	            				{{ objT.nombre }},
+	            			{% endfor %}
+						</td>
+						<td>
+							{% for objT2 in row.objetivoTactico.all %}
+	            				{{ objT2.nombre }},
+	            			{% endfor %}
+						</td>
 						<td>
 							<a href='/ejercicios/ejercicio/{{ row.id }}'>Detalles</a>
 						</td>
@@ -66,8 +74,16 @@
   				{% for ejercicio in ejercicios %}
     			<tr>
 					<td>{{ ejercicio.tipo }}</td>
-					<td>{{ ejercicio.objetivoTecnico }}</td>
-					<td>{{ ejercicio.objetivoTactico }}</td>
+					<td>
+						{% for objT in ejercicio.objetivoTecnico.all %}
+	            			{{ objT.nombre }},
+	            		{% endfor %}
+	            	</td>
+					<td>
+						{% for objTa in ejercicio.objetivoTactico.all %}
+	            			{{ objTa.nombre }},
+	            		{% endfor %}
+	            	</td>
 					<td>
 						<a href='/ejercicios/ejercicio/{{ ejercicio.id }}'>Detalles</a>
 					</td>

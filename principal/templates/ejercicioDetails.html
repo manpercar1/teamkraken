@@ -16,11 +16,19 @@
 	        </tr>
 	        <tr>
 	            <th>Objetivo tecnico</th>
-	            <td>{{ ejercicio.objetivoTecnico }}</td>
+	            <td>
+	            	{% for objT in ejercicio.objetivoTecnico.all %}
+	            		{{ objT.nombre }},
+	            	{% endfor %}
+	            </td>
 	        </tr>
 	        <tr>
 	            <th>Objetivo tactico</th>
-	            <td>{{ ejercicio.objetivoTactico }}</td>
+	            <td>
+	            	{% for objTa in ejercicio.objetivoTactico.all %}
+	            		{{ objTa.nombre }},
+	            	{% endfor %}
+	            </td>
 	        </tr>
 	        <tr>
 	            <th>Descripcion</th>

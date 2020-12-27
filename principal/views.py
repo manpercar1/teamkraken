@@ -62,7 +62,7 @@ def buscar_ejerciciosporfiltro(request):
     if request.method=='POST':
         formulario = BusquedaEjercicios(request.POST)      
         if formulario.is_valid():
-            resultado = Ejercicio.objects.filter(tipo=formulario.cleaned_data['tipo'], objetivoTecnico=formulario.cleaned_data['objTecnico'], 
+            resultado = Ejercicio.objects.filter(objetivoTecnico=formulario.cleaned_data['objTecnico'], 
                                                   objetivoTactico=formulario.cleaned_data['objTactico'])
     
     ejercicios = Ejercicio.objects.all()

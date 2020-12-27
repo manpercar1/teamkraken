@@ -5,13 +5,12 @@ Created on 16 dic. 2020
 '''
 #encoding:utf-8
 from django import forms
-from principal.models import Jugador, Ejercicio
+from principal.models import Jugador, Ejercicio, ObjetivoTecnico,\
+    ObjetivoTactico
     
 class BusquedaEjercicios(forms.Form):
-    lista1=[(j.tipo,j.tipo) for j in Ejercicio.objects.all()]
-    lista2=[(j.objetivoTecnico,j.objetivoTecnico) for j in Ejercicio.objects.all()]
-    lista3=[(j.objetivoTactico,j.objetivoTactico) for j in Ejercicio.objects.all()]
-    tipo = forms.ChoiceField(label="Tipo", choices=lista1)
+    lista2=[(j.id,j.nombre) for j in ObjetivoTecnico.objects.all()]
+    lista3=[(j.id,j.nombre) for j in ObjetivoTactico.objects.all()]
     objTecnico = forms.ChoiceField(label="Objetivo tecnico", choices=lista2)
     objTactico = forms.ChoiceField(label="Objetivo tactico", choices=lista3)
     
