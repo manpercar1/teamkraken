@@ -14,6 +14,6 @@ class BusquedaEjercicios(forms.Form):
     objTecnico = forms.ChoiceField(label="Objetivo tecnico", choices=lista2)
     objTactico = forms.ChoiceField(label="Objetivo tactico", choices=lista3)
     
-class BusquedaPartidosPorJugador(forms.Form):
-    lista=[(j.id,j.nombre) for j in Jugador.objects.all()]
-    jugador = forms.ChoiceField(label="Selecciona el jugador", choices=lista)
+#class BusquedaPartidosPorJugador(forms.Form):
+#    lista=[(j.id,j.nombre) for j in Jugador.objects.all()]
+#    jugador = forms.ChoiceField(label="Selecciona el jugador", choices=lista)

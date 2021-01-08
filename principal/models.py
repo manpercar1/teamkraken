@@ -31,6 +31,12 @@ class Ejercicio(models.Model):
     def __str__(self):
         return self.tipo
 
+class Equipo(models.Model):
+    nombre = models.CharField(max_length=50, verbose_name='Nombre')
+    
+    def __str__(self):
+        return self.nombre
+
 class Jugador(models.Model):
     PIE_DERECHO = 'PD'
     PIE_IZQUIERDO = 'PI'
@@ -47,10 +53,22 @@ class Jugador(models.Model):
     posicionesSecundarias = models.ManyToManyField(Posicion)
     altura = models.DecimalField(max_digits=5, decimal_places=2)
     pieDominante = models.CharField(max_length=2, choices=PIE_DOMINANTE_CHOICES, default=PIE_DERECHO)
+    equipo = models.ForeignKey(Equipo, on_delete=models.SET_NULL, null=True)
     
     def __str__(self):
         return self.nombre
+
+class Partido(models.Model):
+    fecha = models.DateField(verbose_name='Fecha')
+    local = models.CharField(max_length=50, verbose_name='Local')
+    visitante = models.CharField(max_length=50, verbose_name='Visitante')
+    resultado = models.CharField(max_length=10, verbose_name='Resultado')
+    convocados = models.ManyToManyField(Jugador)
+    equipo = models.ForeignKey(Equipo, on_delete=models.SET_NULL, null=True)
     
+    def __str__(self):
+        return self.local + " " + self.visitante
+
 class Entrenamiento(models.Model):
     fecha = models.DateField(verbose_name='Fecha')
     ejercicios = models.ManyToManyField(Ejercicio)
@@ -58,8 +76,8 @@ class Entrenamiento(models.Model):
     
     def __str__(self):
         return self.fecha.__str__()
-
-class Partido(models.Model):
+    
+class DetallesPartido(models.Model):
     SI = 'Si'
     NO = 'No'
     TITULAR_CHOICES = [
